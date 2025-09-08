@@ -2,8 +2,9 @@ project(ze_ceres_backend)
 cmake_minimum_required(VERSION 2.8.3)
 
 find_package(catkin_simple REQUIRED)
-catkin_simple(ALL_DEPS_REQUIRED)
-
+catkin_simple()
+find_package(Ceres REQUIRED)
+find_package(Eigen3 REQUIRED)
 include(ze_setup)
 
 # OpenMP
@@ -60,6 +61,7 @@ set(SOURCES
   )
 
 cs_add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+target_link_libraries(${PROJECT_NAME} ceres Eigen3::Eigen)
 
 ##########
 # EXPORT #

@@ -3,11 +3,13 @@ cmake_minimum_required(VERSION 2.8.3)
 
 find_package(catkin_simple REQUIRED)
 catkin_simple(ALL_DEPS_REQUIRED)
+find_package(Eigen3 REQUIRED)
+find_package(glog REQUIRED)
 
 include(ze_setup)
 
 find_package(OpenCV REQUIRED)
-list(APPEND catkin_LIBRARIES ${OpenCV_LIBRARIES})
+list(APPEND catkin_LIBRARIES ${OpenCV_LIBRARIES} Eigen3::Eigen glog::glog)
 
 #############
 # LIBRARIES #

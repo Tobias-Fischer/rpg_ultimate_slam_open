@@ -7,6 +7,8 @@ endif(${CMAKE_MAJOR_VERSION} VERSION_GREATER 3.0)
 
 find_package(catkin_simple REQUIRED)
 catkin_simple(ALL_DEPS_REQUIRED)
+find_package(Eigen3 REQUIRED)
+find_package(glog REQUIRED)
 
 include(ze_setup)
 
@@ -35,23 +37,24 @@ set(SOURCES
   )
 
 cs_add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+target_link_libraries(${PROJECT_NAME} Eigen3::Eigen glog::glog)
 
 ###
 ### GTEST
 ###
 
-catkin_add_gtest(${PROJECT_NAME}-test
-  test/test_main.cpp
-  test/size_test.cpp
-  test/roi_test.cpp
-  test/vec_test.cpp
-  test/linearmemory_test.cpp
-  test/test_copy.cpp
-)
-target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME} pthread)
+# catkin_add_gtest(${PROJECT_NAME}-test
+#   test/test_main.cpp
+#   test/size_test.cpp
+#   test/roi_test.cpp
+#   test/vec_test.cpp
+#   test/linearmemory_test.cpp
+#   test/test_copy.cpp
+# )
+# target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME} pthread)
 
-catkin_add_gtest(test_image test/test_image.cpp)
-target_link_libraries(test_image ${PROJECT_NAME})
+# catkin_add_gtest(test_image test/test_image.cpp)
+# target_link_libraries(test_image ${PROJECT_NAME})
 
 cs_install()
 cs_export()

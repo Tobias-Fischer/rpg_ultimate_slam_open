@@ -3,6 +3,8 @@ project(ze_visualization)
 
 find_package(catkin_simple REQUIRED)
 catkin_simple(ALL_DEPS_REQUIRED)
+find_package(Eigen3 REQUIRED)
+find_package(glog REQUIRED)
 
 include(ze_setup)
 
@@ -22,6 +24,7 @@ set(SOURCES
   )
 
 cs_add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+target_link_libraries(${PROJECT_NAME} Eigen3::Eigen glog::glog)
 
 ###############
 # EXECUTABLES #
