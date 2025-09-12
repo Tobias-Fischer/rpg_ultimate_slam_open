@@ -5,11 +5,12 @@ find_package(catkin_simple REQUIRED)
 catkin_simple(ALL_DEPS_REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(glog REQUIRED)
+find_package(yaml-cpp REQUIRED)
 
 include(ze_setup)
 
 find_package(OpenCV REQUIRED)
-list(APPEND catkin_LIBRARIES ${OpenCV_LIBRARIES} Eigen3::Eigen glog::glog)
+list(APPEND catkin_LIBRARIES ${OpenCV_LIBRARIES} Eigen3::Eigen glog::glog yaml-cpp::yaml-cpp)
 
 #############
 # LIBRARIES #
